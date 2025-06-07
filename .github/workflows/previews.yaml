@@ -21,12 +21,12 @@ jobs:
         uses: terramate-io/terramate-action@v1
 
       - name: Install asdf
-        uses: asdf-vm/actions/setup@v3
+        uses: asdf-vm/actions/setup@v4
 
       - name: Install OpenTofu with asdf
         run: |
           asdf plugin add opentofu
-          asdf install opentofu
+          asdf install opentofu 1.9.1
 
       - name: List changed Stacks
         run: |
