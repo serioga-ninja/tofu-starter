@@ -32,14 +32,10 @@ jobs:
         run: |
           terramate list --changed
 
-      - name: Generate Terramate files
-        run: |
-          terramate generate
-
       - name: Run OpenTofu Init
         run: |
-          terramate run -- tofu init
+          terramate run --changed -- tofu init
 
       - name: Run OpenTofu Plan
         run: |
-          terramate run -- tofu plan
+          terramate run --changed -- tofu plan
