@@ -29,13 +29,16 @@ jobs:
           asdf install opentofu 1.9.1
 
       - name: List changed Stacks
+        id: list_changed_stacks
         run: |
           terramate list --changed
 
       - name: Run OpenTofu Init
+        if: steps.list_changed_stacks.outputs.stacks != ''
         run: |
           terramate run --changed -- tofu init
 
       - name: Run OpenTofu Plan
+        if: steps.list_changed_stacks.outputs.stacks != ''
         run: |
           terramate run --changed -- tofu plan
